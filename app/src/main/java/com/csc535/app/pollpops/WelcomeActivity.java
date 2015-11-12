@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.MenuItem;
 import android.content.Intent;
+import android.os.StrictMode;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -19,6 +20,9 @@ public class WelcomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+
+        StrictMode.setThreadPolicy(policy);
     }
 
     @Override

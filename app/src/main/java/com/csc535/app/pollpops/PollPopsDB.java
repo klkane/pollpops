@@ -4,12 +4,12 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.MongoCollection;
 import org.bson.Document;
-
+import android.os.AsyncTask;
 import java.util.Set;
 
 public class PollPopsDB {
     private MongoDatabase getDB( String pid ) {
-        MongoClient mongoClient = new MongoClient( "66.175.214.36" , 27107 );
+        MongoClient mongoClient = new MongoClient( "trillian.arctangent.net" , 27017 );
         MongoDatabase db = mongoClient.getDatabase(pid);
         return db;
     }
