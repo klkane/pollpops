@@ -11,11 +11,18 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Now Playing:"
-        android:id="@+id/textView2"
+        android:id="@+id/nowPlayingLabel"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Refresh Chart"
+        android:id="@+id/refreshChart"
+        android:onClick="updateChart"
+        android:layout_below="@+id/nowPlayingEdit"
+        android:layout_alignLeft="@+id/nowPlayingLabel" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,7 +40,14 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_toRightOf="@+id/textView2"
-        android:layout_toEndOf="@+id/textView2" />
+        android:layout_toRightOf="@+id/nowPlayingLabel"
+        android:layout_toEndOf="@+id/nowPlayingLabel" />
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/feedbackChart"
+        android:layout_width="match_parent"
+        android:layout_alignRight="@+id/nowPlayingEdit"
+        android:layout_alignEnd="@+id/nowPlayingEdit"
+        android:layout_below="@+id/updateNowPlaying"
+        android:layout_height="fill_parent" />
 
 </RelativeLayout>

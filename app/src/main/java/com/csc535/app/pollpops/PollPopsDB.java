@@ -23,6 +23,11 @@ public class PollPopsDB {
         return db;
     }
 
+    public MongoCursor<Document> getFeedbackCursor() {
+        MongoDatabase db = this.getDB(this.performance_id);
+        MongoCollection<Document> coll = db.getCollection("feedback");
+        return coll.find().iterator();
+    }
     public void setNowPlaying( String nowPlaying ) {
         MongoDatabase db = this.getDB(this.performance_id);
         MongoCollection<Document> coll = db.getCollection("setlist");
