@@ -25,18 +25,31 @@ public class PollPopsDB {
 
     public void setNowPlaying( String nowPlaying ) {
         MongoDatabase db = this.getDB(this.performance_id);
-        MongoCollection<Document> coll = db.getCollection("performance");
-        coll.replaceOne(Filters.eq("performance_id", this.performance_id),
-                new Document("$set", new Document("now_playing", nowPlaying)));
+        MongoCollection<Document> coll = db.getCollection("setlist");
+        String ts = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+        coll.insertOne(new Document("song", nowPlaying).append("time", ts));
     }
 
     public String getNowPlaying() {
         MongoDatabase db = this.getDB(this.performance_id);
-        MongoCollection<Document> coll = db.getCollection("performance");
-        Document doc = coll.find().first();
-        return doc.getString( "now_playing" );
+        MongoCollection<Document> coll = db.getCollection("setlist");
+        Document doc = (Document) coll.find().sort(Sorts.descending("time")).first();
+        if( doc != null ) {
+            return doc.getString("song");
+        }
+        return "NONE";
     }
 
+    public void recordFeedback( int value ) {
+        MongoDatabase db = this.getDB(this.performance_id);
+        MongoCollection<Document> coll = db.getCollection("feedback");
+        String ts = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+        Document doc = new Document("feedback", value)
+                .append("user", this.username )
+                .append("time", ts);
+        coll.insertOne(doc);
+
+    }
     public void sendChatMessage( String msg ) {
         MongoDatabase db = this.getDB(this.performance_id);
         MongoCollection<Document> coll = db.getCollection("chat_messages");
@@ -72,12 +85,13 @@ public class PollPopsDB {
         MongoCollection<Document> coll = db.getCollection("performance");
         Document doc = new Document("location", location)
                 .append("datetime", datetime)
+                .append("user", this.username)
                 .append("performer", performer);
         coll.insertOne(doc);
     }
 
-    public void createSetList( String pid, String[] songs ) {
-        MongoDatabase db = this.getDB(pid);
+    public void createSetList( String[] songs ) {
+        MongoDatabase db = this.getDB(this.performance_id);
         MongoCollection<Document> coll = db.getCollection("setlist");
         for( String set : songs ) {
             Document doc = new Document("song", set);

@@ -20,6 +20,16 @@ public class WelcomeActivity extends AppCompatActivity {
         pdb.username = userEdit.getText().toString();
         startActivity(intent);
     }
+
+    public void enterPerformanceAsPerformer( View v ) {
+        Intent intent = new Intent(getApplicationContext(), PerformerActivity.class);
+        PollPopsDB pdb = PollHelper.getPollPopsDB();
+        EditText mEdit = (EditText)findViewById(R.id.performanceId);
+        EditText userEdit = (EditText)findViewById(R.id.username);
+        pdb.performance_id = mEdit.getText().toString();
+        pdb.username = userEdit.getText().toString();
+        startActivity(intent);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

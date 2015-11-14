@@ -22,6 +22,29 @@ public class UserPerformanceView extends AppCompatActivity {
         this.updateChats();
     }
 
+    private void processFeedback( int level ) {
+        PollPopsDB pdb = PollHelper.getPollPopsDB();
+        pdb.recordFeedback( level );
+    }
+
+    public void becomePerformer( View v ) {
+
+    }
+    public void likeAction( View v ) {
+        this.processFeedback( 1 );
+    }
+
+    public void dislikeAction( View v ) {
+        this.processFeedback( -1 );
+    }
+
+    public void updateNowPlaying() {
+        PollPopsDB pdb = PollHelper.getPollPopsDB();
+        TextView txt = (TextView)findViewById(R.id.nowPlaying);
+        String msg = pdb.getNowPlaying();
+        txt.setText( "Now Playing: " + msg );
+    }
+
     public void updateChats() {
         PollPopsDB pdb = PollHelper.getPollPopsDB();
         TextView txt = (TextView)findViewById(R.id.chatDisplay);
@@ -39,6 +62,7 @@ public class UserPerformanceView extends AppCompatActivity {
     public void onResume() {
         super.onResume();  // Always call the superclass method first
         this.updateChats();
+        this.updateNowPlaying();
     }
 
     @Override
@@ -46,6 +70,7 @@ public class UserPerformanceView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_performance_view);
         this.updateChats();
+        this.updateNowPlaying();
     }
 
     @Override
