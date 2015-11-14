@@ -7,13 +7,17 @@ import android.view.View;
 import android.view.MenuItem;
 import android.content.Intent;
 import android.os.StrictMode;
+import android.widget.EditText;
 
 public class WelcomeActivity extends AppCompatActivity {
 
     public void enterPerformance(View v) {
         Intent intent = new Intent(getApplicationContext(), UserPerformanceView.class);
-        PollPopsDB pdb = new PollPopsDB();
-        pdb.sendChatMessage( "blorp", "AD12345" );
+        PollPopsDB pdb = PollHelper.getPollPopsDB();
+        EditText mEdit = (EditText)findViewById(R.id.performanceId);
+        EditText userEdit = (EditText)findViewById(R.id.username);
+        pdb.performance_id = mEdit.getText().toString();
+        pdb.username = userEdit.getText().toString();
         startActivity(intent);
     }
     @Override

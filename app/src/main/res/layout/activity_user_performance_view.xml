@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Now Playing: Higher Ground"
-        android:id="@+id/textView2"
+        android:id="@+id/nowPlaying"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
@@ -22,19 +22,60 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Like"
-        android:id="@+id/button2"
-        android:layout_alignParentBottom="true"
+        android:id="@+id/likeButton"
+        android:layout_marginTop="33dp"
+        android:layout_below="@+id/nowPlaying"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="175dp" />
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Dislike"
-        android:id="@+id/button3"
-        android:layout_alignBottom="@+id/button2"
+        android:id="@+id/dislikeButton"
+        android:layout_alignBottom="@+id/likeButton"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/chatDisplay"
+        android:layout_below="@+id/chatSend"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/nowPlaying"
+        android:layout_alignEnd="@+id/nowPlaying" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chatSend"
+        android:layout_below="@+id/likeButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/dislikeButton"
+        android:layout_toStartOf="@+id/dislikeButton" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send"
+        android:id="@+id/sendChat"
+        android:layout_alignBottom="@+id/chatSend"
+        android:layout_toRightOf="@+id/chatSend"
+        android:layout_toEndOf="@+id/chatSend"
+        android:onClick="sendChatMessage" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Meh"
+        android:id="@+id/mehButton"
+        android:layout_above="@+id/chatSend"
+        android:layout_centerHorizontal="true"
+        android:longClickable="true" />
 
 </RelativeLayout>

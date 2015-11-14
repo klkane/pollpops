@@ -1,16 +1,51 @@
 package com.csc535.app.pollpops;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class UserPerformanceView extends AppCompatActivity {
+
+    public void sendChatMessage(View v) {
+        Intent intent = new Intent(getApplicationContext(), UserPerformanceView.class);
+        PollPopsDB pdb = PollHelper.getPollPopsDB();
+        EditText mEdit = (EditText)findViewById(R.id.chatSend);
+        pdb.sendChatMessage(mEdit.getText().toString());
+        mEdit.setText( "" );
+        mEdit.setEnabled( false );
+        mEdit.setEnabled( true );
+        this.updateChats();
+    }
+
+    public void updateChats() {
+        PollPopsDB pdb = PollHelper.getPollPopsDB();
+        TextView txt = (TextView)findViewById(R.id.chatDisplay);
+        String msg = "";
+        String[] msgs = pdb.getChatMessages( 10 );
+        for( String _msg : msgs ) {
+            if( _msg != null ) {
+                msg = msg + _msg + "\n";
+            }
+        }
+        txt.setText(msg);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();  // Always call the superclass method first
+        this.updateChats();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_performance_view);
+        this.updateChats();
     }
 
     @Override
