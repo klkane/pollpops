@@ -9,38 +9,23 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class UserPerformanceView extends AppCompatActivity {
+public class PerformerChats extends AppCompatActivity {
 
-    public void sendChatMessage(View v) {
-        Intent intent = new Intent(getApplicationContext(), UserPerformanceView.class);
-        PollPopsDB pdb = PollHelper.getPollPopsDB();
-        EditText mEdit = (EditText)findViewById(R.id.chatSend);
-        pdb.sendChatMessage(mEdit.getText().toString());
-        mEdit.setText( "" );
-        mEdit.setEnabled( false );
-        mEdit.setEnabled( true );
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_performer_chats);
         this.updateChats();
     }
 
-    private void processFeedback( int level ) {
+    public void sendChatMessage(View v) {
         PollPopsDB pdb = PollHelper.getPollPopsDB();
-        pdb.recordFeedback( level );
-    }
-
-
-    public void likeAction( View v ) {
-        this.processFeedback( 1 );
-    }
-
-    public void dislikeAction( View v ) {
-        this.processFeedback( -1 );
-    }
-
-    public void updateNowPlaying() {
-        PollPopsDB pdb = PollHelper.getPollPopsDB();
-        TextView txt = (TextView)findViewById(R.id.nowPlaying);
-        String msg = pdb.getNowPlaying();
-        txt.setText( "Now Playing: " + msg );
+        EditText mEdit = (EditText)findViewById(R.id.chatText);
+        pdb.sendChatMessage(mEdit.getText().toString());
+        mEdit.setText( "" );
+        mEdit.setEnabled(false);
+        mEdit.setEnabled(true);
+        this.updateChats();
     }
 
     public void updateChats() {
@@ -57,24 +42,9 @@ public class UserPerformanceView extends AppCompatActivity {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();  // Always call the superclass method first
-        this.updateChats();
-        this.updateNowPlaying();
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_performance_view);
-        this.updateChats();
-        this.updateNowPlaying();
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_user_performance_view, menu);
+        getMenuInflater().inflate(R.menu.menu_performer_chats, menu);
         return true;
     }
 

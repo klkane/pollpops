@@ -23,6 +23,16 @@ public class PollPopsDB {
         return db;
     }
 
+    public boolean performanceExists() {
+        MongoDatabase db = this.getDB(this.performance_id);
+        MongoCollection<Document> coll = db.getCollection("performance");
+        Document doc = (Document) coll.find().first();
+        if( doc == null ) {
+            return false;
+        }
+        return true;
+    }
+
     public MongoCursor<Document> getFeedbackCursor() {
         MongoDatabase db = this.getDB(this.performance_id);
         MongoCollection<Document> coll = db.getCollection("feedback");
@@ -85,23 +95,16 @@ public class PollPopsDB {
         return results;
     }
 
-    public void createPerformance( String performer, String location, String datetime ) {
+    public void createPerformance( String performer, String location, String date, String time ) {
         MongoDatabase db = this.getDB(this.performance_id);
         MongoCollection<Document> coll = db.getCollection("performance");
         Document doc = new Document("location", location)
-                .append("datetime", datetime)
+                .append("date", date)
+                .append("time", time)
                 .append("user", this.username)
+                .append("created", true)
                 .append("performer", performer);
         coll.insertOne(doc);
-    }
-
-    public void createSetList( String[] songs ) {
-        MongoDatabase db = this.getDB(this.performance_id);
-        MongoCollection<Document> coll = db.getCollection("setlist");
-        for( String set : songs ) {
-            Document doc = new Document("song", set);
-            coll.insertOne(doc);
-        }
     }
 }
 

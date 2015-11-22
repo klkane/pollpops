@@ -32,6 +32,14 @@
             android:name=".PerformerActivity"
             android:label="@string/title_activity_performer" >
         </activity>
+        <activity
+            android:name=".PerformanceCreate"
+            android:label="@string/title_activity_performance_create" >
+        </activity>
+        <activity
+            android:name=".PerformerChats"
+            android:label="@string/title_activity_performer_chats" >
+        </activity>
     </application>
 
 </manifest>

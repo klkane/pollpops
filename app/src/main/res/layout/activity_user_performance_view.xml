@@ -39,18 +39,6 @@
         android:layout_alignParentEnd="true"
         android:onClick="dislikeAction" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/chatDisplay"
-        android:layout_below="@+id/chatSend"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/nowPlaying"
-        android:layout_alignEnd="@+id/nowPlaying" />
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -70,5 +58,23 @@
         android:layout_toRightOf="@+id/chatSend"
         android:layout_toEndOf="@+id/chatSend"
         android:onClick="sendChatMessage" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/chatSend"
+        android:layout_alignRight="@+id/sendChat"
+        android:layout_alignEnd="@+id/sendChat" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/chatDisplay" />
+    </ScrollView>
 
 </RelativeLayout>

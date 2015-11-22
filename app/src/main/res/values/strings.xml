@@ -9,4 +9,6 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_user_performance_view">PollPops</string>
     <string name="title_activity_performer">PerformerActivity</string>
+    <string name="title_activity_performance_create">PollPops</string>
+    <string name="title_activity_performer_chats">PollPops</string>
 </resources>

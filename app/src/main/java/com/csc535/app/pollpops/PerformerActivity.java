@@ -43,8 +43,13 @@ public class PerformerActivity extends AppCompatActivity {
         }
         LineDataSet lineDataSet = new LineDataSet( feed, "Audience Feedback" );
         LineData data = new LineData(xVals, lineDataSet);
-        chart.setData( data );
+        chart.setData(data);
         chart.invalidate();
+    }
+
+    public void viewChats(MenuItem i) {
+        Intent intent = new Intent(getApplicationContext(), PerformerChats.class);
+        startActivity(intent);
     }
 
     @Override

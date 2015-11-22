@@ -22,13 +22,18 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     public void enterPerformanceAsPerformer( View v ) {
-        Intent intent = new Intent(getApplicationContext(), PerformerActivity.class);
         PollPopsDB pdb = PollHelper.getPollPopsDB();
         EditText mEdit = (EditText)findViewById(R.id.performanceId);
         EditText userEdit = (EditText)findViewById(R.id.username);
         pdb.performance_id = mEdit.getText().toString();
         pdb.username = userEdit.getText().toString();
-        startActivity(intent);
+        if( pdb.performanceExists()) {
+            Intent intent = new Intent(getApplicationContext(), PerformerActivity.class);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(getApplicationContext(), PerformanceCreate.class);
+            startActivity(intent);
+        }
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {

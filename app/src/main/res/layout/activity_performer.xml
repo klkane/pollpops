@@ -45,9 +45,10 @@
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/feedbackChart"
         android:layout_width="match_parent"
-        android:layout_alignRight="@+id/nowPlayingEdit"
-        android:layout_alignEnd="@+id/nowPlayingEdit"
-        android:layout_below="@+id/updateNowPlaying"
-        android:layout_height="fill_parent" />
+        android:layout_height="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/updateNowPlaying"
+        android:layout_alignEnd="@+id/updateNowPlaying"
+        android:layout_below="@+id/refreshChart" />
 
 </RelativeLayout>
