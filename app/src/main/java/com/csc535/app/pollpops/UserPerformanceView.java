@@ -92,4 +92,9 @@ public class UserPerformanceView extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void viewSetlist(MenuItem item) {
+        Intent intent = new Intent(getApplicationContext(), AudienceSetlist.class);
+        startActivity(intent);
+    }
 }

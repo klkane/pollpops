@@ -10,4 +10,5 @@
     <string name="title_activity_performance_create">PollPops</string>
     <string name="title_activity_performer_chats">PollPops</string>
     <string name="title_activity_performer_login">PollPops</string>
+    <string name="title_activity_audience_setlist">PollPops</string>
 </resources>

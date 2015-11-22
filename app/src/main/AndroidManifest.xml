@@ -44,6 +44,10 @@
             android:name=".performer_login"
             android:label="@string/title_activity_performer_login" >
         </activity>
+        <activity
+            android:name=".AudienceSetlist"
+            android:label="@string/title_activity_audience_setlist" >
+        </activity>
     </application>
 
 </manifest>

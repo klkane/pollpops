@@ -56,6 +56,25 @@ public class PollPopsDB {
         return doc.getString( "password" );
     }
 
+    public String[] getSetlist() {
+        MongoDatabase db = this.getDB(this.performance_id);
+        MongoCollection<Document> coll = db.getCollection("setlist");
+        MongoCursor<Document> cursor = coll.find().sort(Sorts.ascending("time")).iterator();
+        String[] results = new String[100];
+        int index = 0;
+        try {
+            while (cursor.hasNext()) {
+                Document doc = cursor.next();
+                results[index] = doc.getString("song");
+                index++;
+            }
+        } finally {
+            cursor.close();
+        }
+
+        return results;
+    }
+
     public String getNowPlaying() {
         MongoDatabase db = this.getDB(this.performance_id);
         MongoCollection<Document> coll = db.getCollection("setlist");
