@@ -21,11 +21,11 @@ public class PerformerActivity extends AppCompatActivity {
         PollPopsDB pdb = PollHelper.getPollPopsDB();
         EditText mEdit = (EditText)findViewById(R.id.nowPlayingEdit);
         pdb.setNowPlaying(mEdit.getText().toString());
-        mEdit.setEnabled( false );
-        mEdit.setEnabled( true );
+        mEdit.setEnabled(false);
+        mEdit.setEnabled(true);
     }
 
-    public void updateChart( View v ) {
+    public void updateChart( MenuItem i ) {
         PollPopsDB pdb = PollHelper.getPollPopsDB();
         MongoCursor<Document> cursor = pdb.getFeedbackCursor();
         LineChart chart = (LineChart) findViewById(R.id.feedbackChart);

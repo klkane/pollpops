@@ -22,11 +22,12 @@ public class PerformanceCreate extends AppCompatActivity {
         EditText locationEdit = (EditText) findViewById(R.id.locationText);
         EditText dateEdit = (EditText) findViewById(R.id.dateText);
         EditText timeEdit = (EditText) findViewById(R.id.timeText);
-        EditText userEdit = (EditText) findViewById(R.id.username);
+        EditText passwordEdit = (EditText) findViewById(R.id.passwordEdit);
         pdb.createPerformance( performerEdit.getText().toString(),
                 locationEdit.getText().toString(),
                 dateEdit.getText().toString(),
-                timeEdit.getText().toString());
+                timeEdit.getText().toString(),
+                passwordEdit.getText().toString());
         Intent intent = new Intent(getApplicationContext(), PerformerActivity.class);
         startActivity(intent);
     }

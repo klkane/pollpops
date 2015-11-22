@@ -9,42 +9,31 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class PerformerChats extends AppCompatActivity {
+public class performer_login extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_performer_chats);
-        this.updateChats();
+        setContentView(R.layout.activity_performer_login);
     }
 
-    public void sendChatMessage(View v) {
+    public void loginAttempt( View v ) {
+        EditText passwordEdit = (EditText)findViewById(R.id.passwordEdit);
         PollPopsDB pdb = PollHelper.getPollPopsDB();
-        EditText mEdit = (EditText)findViewById(R.id.chatText);
-        pdb.sendChatMessage(mEdit.getText().toString());
-        mEdit.setText( "" );
-        mEdit.setEnabled(false);
-        mEdit.setEnabled(true);
-        this.updateChats();
-    }
 
-    public void updateChats() {
-        PollPopsDB pdb = PollHelper.getPollPopsDB();
-        TextView txt = (TextView)findViewById(R.id.chatDisplay);
-        String msg = "";
-        String[] msgs = pdb.getChatMessages( 100 );
-        for( String _msg : msgs ) {
-            if( _msg != null ) {
-                msg = msg + _msg + "\n";
-            }
+        if( passwordEdit.getText().toString().equals( pdb.getPassword() ) ) {
+            Intent intent = new Intent(getApplicationContext(), PerformerActivity.class);
+            startActivity(intent);
+        } else {
+            TextView txt = (TextView)findViewById(R.id.errorText);
+            txt.setText( "Password did not match, enter the correct password to become the performer.\n" );
         }
-        txt.setText(msg);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_performer_chats, menu);
+        getMenuInflater().inflate(R.menu.menu_performer_login, menu);
         return true;
     }
 

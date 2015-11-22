@@ -5,10 +5,9 @@
     <string name="action_settings">Settings</string>
 
     <string name="title_activity_user_performance">PollPops</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_user_performance_view">PollPops</string>
-    <string name="title_activity_performer">PerformerActivity</string>
+    <string name="title_activity_performer">PollPops</string>
     <string name="title_activity_performance_create">PollPops</string>
     <string name="title_activity_performer_chats">PollPops</string>
+    <string name="title_activity_performer_login">PollPops</string>
 </resources>

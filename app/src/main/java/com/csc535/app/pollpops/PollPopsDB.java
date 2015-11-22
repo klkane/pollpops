@@ -45,6 +45,17 @@ public class PollPopsDB {
         coll.insertOne(new Document("song", nowPlaying).append("time", ts));
     }
 
+    public String getPassword() {
+        MongoDatabase db = this.getDB(this.performance_id);
+        MongoCollection<Document> coll = db.getCollection("performance");
+        Document doc = (Document) coll.find().first();
+        if( doc == null ) {
+            return "n0p3r1n0";
+        }
+
+        return doc.getString( "password" );
+    }
+
     public String getNowPlaying() {
         MongoDatabase db = this.getDB(this.performance_id);
         MongoCollection<Document> coll = db.getCollection("setlist");
@@ -95,14 +106,14 @@ public class PollPopsDB {
         return results;
     }
 
-    public void createPerformance( String performer, String location, String date, String time ) {
+    public void createPerformance( String performer, String location, String date, String time, String password ) {
         MongoDatabase db = this.getDB(this.performance_id);
         MongoCollection<Document> coll = db.getCollection("performance");
         Document doc = new Document("location", location)
                 .append("date", date)
                 .append("time", time)
-                .append("user", this.username)
-                .append("created", true)
+                .append("user", this.username )
+                .append("password", password)
                 .append("performer", performer);
         coll.insertOne(doc);
     }

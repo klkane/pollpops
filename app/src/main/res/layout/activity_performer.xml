@@ -15,14 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Refresh Chart"
-        android:id="@+id/refreshChart"
-        android:onClick="updateChart"
-        android:layout_below="@+id/nowPlayingEdit"
-        android:layout_alignLeft="@+id/nowPlayingLabel" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -49,6 +42,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/updateNowPlaying"
         android:layout_alignEnd="@+id/updateNowPlaying"
-        android:layout_below="@+id/refreshChart" />
+        android:layout_below="@+id/updateNowPlaying" />
 
 </RelativeLayout>

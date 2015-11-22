@@ -28,7 +28,7 @@ public class WelcomeActivity extends AppCompatActivity {
         pdb.performance_id = mEdit.getText().toString();
         pdb.username = userEdit.getText().toString();
         if( pdb.performanceExists()) {
-            Intent intent = new Intent(getApplicationContext(), PerformerActivity.class);
+            Intent intent = new Intent(getApplicationContext(), performer_login.class);
             startActivity(intent);
         } else {
             Intent intent = new Intent(getApplicationContext(), PerformanceCreate.class);

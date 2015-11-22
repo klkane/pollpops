@@ -40,6 +40,10 @@
             android:name=".PerformerChats"
             android:label="@string/title_activity_performer_chats" >
         </activity>
+        <activity
+            android:name=".performer_login"
+            android:label="@string/title_activity_performer_login" >
+        </activity>
     </application>
 
 </manifest>

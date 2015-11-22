@@ -4,6 +4,8 @@
     tools:context="com.csc535.app.pollpops.PerformerActivity">
     <item android:id="@+id/action_chat" android:title="View Chats"
         android:orderInCategory="100" android:onClick="viewChats" app:showAsAction="never" />
+    <item android:id="@+id/action_refresh_chart" android:title="Refresh Chart"
+        android:orderInCategory="100" android:onClick="updateChart" app:showAsAction="never" />
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" app:showAsAction="never" />
 </menu>

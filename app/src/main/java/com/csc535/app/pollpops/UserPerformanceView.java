@@ -47,7 +47,7 @@ public class UserPerformanceView extends AppCompatActivity {
         PollPopsDB pdb = PollHelper.getPollPopsDB();
         TextView txt = (TextView)findViewById(R.id.chatDisplay);
         String msg = "";
-        String[] msgs = pdb.getChatMessages( 10 );
+        String[] msgs = pdb.getChatMessages( 100 );
         for( String _msg : msgs ) {
             if( _msg != null ) {
                 msg = msg + _msg + "\n";
