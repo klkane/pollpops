@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class UserPerformanceView extends AppCompatActivity {
 
@@ -56,6 +58,7 @@ public class UserPerformanceView extends AppCompatActivity {
         txt.setText(msg);
     }
 
+
     @Override
     public void onResume() {
         super.onResume();  // Always call the superclass method first
@@ -68,7 +71,21 @@ public class UserPerformanceView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_performance_view);
         this.updateChats();
+        final UserPerformanceView view = this;
         this.updateNowPlaying();
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        view.updateChats();
+                        view.updateNowPlaying();
+                    }
+                });
+            }
+        }, 0, 4000);
     }
 
     @Override
