@@ -61,22 +61,30 @@ public class PerformanceRecord extends AppCompatActivity {
         try {
             myAudioPlayer.setDataSource(outputFile);
             myAudioPlayer.prepare();
+            myAudioPlayer.start();
         }
         catch( IOException e ){
         }
-
-        myAudioPlayer.start();
+        catch( Exception e ) {
+        }
     }
 
     public void stopAction( View v ) {
         if( myAudioRecorder != null ) {
-            myAudioRecorder.stop();
-            myAudioRecorder.reset();
-            myAudioRecorder.release();
+            try {
+                myAudioRecorder.stop();
+                myAudioRecorder.reset();
+                myAudioRecorder.release();
+            }
+            catch( Exception e ) {
+            }
             myAudioRecorder = null;
         } else if( myAudioPlayer != null ) {
-            myAudioPlayer.stop();
-            myAudioPlayer.release();
+            try {
+                myAudioPlayer.stop();
+                myAudioPlayer.release();
+            } catch ( Exception e ) {
+            }
             myAudioPlayer = null;
         }
 
@@ -108,10 +116,10 @@ public class PerformanceRecord extends AppCompatActivity {
             myAudioRecorder.start();
         }
         catch (IllegalStateException e) {
-            e.printStackTrace();
         }
         catch (IOException e) {
-            e.printStackTrace();
+        }
+        catch ( Exception e) {
         }
     }
 }

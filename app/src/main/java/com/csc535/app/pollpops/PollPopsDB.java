@@ -16,10 +16,13 @@ import java.util.Set;
 public class PollPopsDB {
     public String performance_id;
     public String username;
+    private MongoClient mongoClient;
 
     private MongoDatabase getDB( String pid ) {
-        MongoClient mongoClient = new MongoClient( "trillian.arctangent.net" , 27017 );
-        MongoDatabase db = mongoClient.getDatabase(this.performance_id);
+        if( this.mongoClient == null ) {
+            this.mongoClient = new MongoClient("trillian.arctangent.net", 27017);
+        }
+        MongoDatabase db = this.mongoClient.getDatabase(this.performance_id);
         return db;
     }
 
