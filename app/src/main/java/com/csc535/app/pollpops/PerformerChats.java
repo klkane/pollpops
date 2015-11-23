@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class PerformerChats extends AppCompatActivity {
 
     @Override
@@ -16,6 +19,20 @@ public class PerformerChats extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_performer_chats);
         this.updateChats();
+
+        final PerformerChats view = this;
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        view.updateChats();
+                    }
+                });
+            }
+        }, 0, 4000);
     }
 
     public void sendChatMessage(View v) {
