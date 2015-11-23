@@ -13,6 +13,9 @@ import com.github.mikephil.charting.data.LineData;
 import com.mongodb.client.MongoCursor;
 import com.github.mikephil.charting.data.Entry;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import org.bson.Document;
 
 public class PerformerActivity extends AppCompatActivity {
@@ -26,6 +29,10 @@ public class PerformerActivity extends AppCompatActivity {
     }
 
     public void updateChart( MenuItem i ) {
+        this.updateChartInternal();
+    }
+
+    public void updateChartInternal() {
         PollPopsDB pdb = PollHelper.getPollPopsDB();
         MongoCursor<Document> cursor = pdb.getFeedbackCursor();
         LineChart chart = (LineChart) findViewById(R.id.feedbackChart);
@@ -56,6 +63,20 @@ public class PerformerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_performer);
+        this.updateChartInternal();
+        final PerformerActivity view = this;
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        view.updateChartInternal();
+                    }
+                });
+            }
+        }, 0, 5000);
     }
 
     @Override
@@ -78,5 +99,10 @@ public class PerformerActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void recordPerformance(MenuItem item) {
+        Intent intent = new Intent(getApplicationContext(), PerformanceRecord.class);
+        startActivity(intent);
     }
 }
