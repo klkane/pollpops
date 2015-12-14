@@ -7,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
+import android.content.Context;
 
 public class PerformanceCreate extends AppCompatActivity {
 
@@ -14,6 +16,8 @@ public class PerformanceCreate extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_performance_create);
+        View view = this.getWindow().getDecorView();
+        view.setBackgroundColor(0xffffffff);
     }
 
     public void createPerformance( View v ) {
@@ -23,13 +27,27 @@ public class PerformanceCreate extends AppCompatActivity {
         EditText dateEdit = (EditText) findViewById(R.id.dateText);
         EditText timeEdit = (EditText) findViewById(R.id.timeText);
         EditText passwordEdit = (EditText) findViewById(R.id.passwordEdit);
-        pdb.createPerformance( performerEdit.getText().toString(),
-                locationEdit.getText().toString(),
-                dateEdit.getText().toString(),
-                timeEdit.getText().toString(),
-                passwordEdit.getText().toString());
-        Intent intent = new Intent(getApplicationContext(), PerformerActivity.class);
-        startActivity(intent);
+
+        if( performerEdit.getText().toString().length() > 0 &&
+                locationEdit.getText().toString().length() > 0 &&
+                dateEdit.getText().toString().length() > 0 &&
+                timeEdit.getText().toString().length() > 0 &&
+                passwordEdit.getText().toString().length() > 0
+                ) {
+            pdb.createPerformance(performerEdit.getText().toString(),
+                    locationEdit.getText().toString(),
+                    dateEdit.getText().toString(),
+                    timeEdit.getText().toString(),
+                    passwordEdit.getText().toString());
+            Intent intent = new Intent(getApplicationContext(), PerformerActivity.class);
+            startActivity(intent);
+        } else {
+            Context context = getApplicationContext();
+            CharSequence text = "All fields are required to proceed!";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
     }
 
     @Override

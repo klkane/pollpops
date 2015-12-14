@@ -1,5 +1,6 @@
 package com.csc535.app.pollpops;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,35 +8,34 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Toast;
 
-public class performer_login extends AppCompatActivity {
+public class UserLoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_performer_login);
-        View view = this.getWindow().getDecorView();
-        view.setBackgroundColor(0xffffffff);
+        setContentView(R.layout.activity_user_login);
     }
 
-    public void loginAttempt( View v ) {
-        EditText passwordEdit = (EditText)findViewById(R.id.passwordEdit);
+    public void loginUser(View v) {
+        EditText mEdit = (EditText)findViewById(R.id.passwordText);
         PollPopsDB pdb = PollHelper.getPollPopsDB();
-
-        if( passwordEdit.getText().toString().equals( pdb.getPassword() ) ) {
-            Intent intent = new Intent(getApplicationContext(), PerformerActivity.class);
+        if( pdb.checkPassword( mEdit.getText().toString() ) ) {
+            Intent intent = new Intent(getApplicationContext(), UserPerformanceView.class);
             startActivity(intent);
         } else {
-            TextView txt = (TextView)findViewById(R.id.errorText);
-            txt.setText( "Password did not match, enter the correct password to become the performer.\n" );
+            Context context = getApplicationContext();
+            CharSequence text = "The password you entered is not correct";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
         }
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_performer_login, menu);
+        getMenuInflater().inflate(R.menu.menu_user_login, menu);
         return true;
     }
 

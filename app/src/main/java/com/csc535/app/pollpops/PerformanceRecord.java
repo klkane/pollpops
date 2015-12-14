@@ -18,6 +18,8 @@ public class PerformanceRecord extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        View view = this.getWindow().getDecorView();
+        view.setBackgroundColor(0xffffffff);
         setContentView(R.layout.activity_performance_record);
         Button playButton = (Button) findViewById(R.id.playButton);
         playButton.setEnabled( false );

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.csc535.app.pollpops" >
+
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -53,6 +54,14 @@
         <activity
             android:name=".PerformanceRecord"
             android:label="@string/title_activity_performance_record" >
+        </activity>
+        <activity
+            android:name=".UserLoginActivity"
+            android:label="@string/title_activity_user_login" >
+        </activity>
+        <activity
+            android:name=".UserCreateLogin"
+            android:label="@string/title_activity_user_create_login" >
         </activity>
     </application>
 

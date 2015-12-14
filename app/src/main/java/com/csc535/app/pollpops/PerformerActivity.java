@@ -63,6 +63,8 @@ public class PerformerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_performer);
+        View view2 = this.getWindow().getDecorView();
+        view2.setBackgroundColor(0xffffffff);
         this.updateChartInternal();
         final PerformerActivity view = this;
         Timer timer = new Timer();

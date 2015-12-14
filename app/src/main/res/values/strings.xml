@@ -12,4 +12,6 @@
     <string name="title_activity_performer_login">PollPops</string>
     <string name="title_activity_audience_setlist">PollPops</string>
     <string name="title_activity_performance_record">PollPops</string>
+    <string name="title_activity_user_login">PollPops</string>
+    <string name="title_activity_user_create_login">PollPops</string>
 </resources>

@@ -70,6 +70,8 @@ public class UserPerformanceView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_performance_view);
+        View view2 = this.getWindow().getDecorView();
+        view2.setBackgroundColor(0xffffffff);
         this.updateChats();
         final UserPerformanceView view = this;
         this.updateNowPlaying();

@@ -12,13 +12,20 @@ import android.widget.EditText;
 public class WelcomeActivity extends AppCompatActivity {
 
     public void enterPerformance(View v) {
-        Intent intent = new Intent(getApplicationContext(), UserPerformanceView.class);
+
         PollPopsDB pdb = PollHelper.getPollPopsDB();
         EditText mEdit = (EditText)findViewById(R.id.performanceId);
         EditText userEdit = (EditText)findViewById(R.id.username);
         pdb.performance_id = mEdit.getText().toString();
         pdb.username = userEdit.getText().toString();
-        startActivity(intent);
+        if( pdb.userExists() ) {
+            Intent intent = new Intent(getApplicationContext(), UserLoginActivity.class);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(getApplicationContext(), UserCreateLogin.class);
+            startActivity(intent);
+        }
+
     }
 
     public void enterPerformanceAsPerformer( View v ) {
@@ -39,6 +46,8 @@ public class WelcomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+        View view = this.getWindow().getDecorView();
+        view.setBackgroundColor(0xffffffff);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 
         StrictMode.setThreadPolicy(policy);

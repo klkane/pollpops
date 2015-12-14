@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 public class AudienceSetlist extends AppCompatActivity {
@@ -12,7 +13,8 @@ public class AudienceSetlist extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_audience_setlist);
-
+        View view = this.getWindow().getDecorView();
+        view.setBackgroundColor(0xffffffff);
         PollPopsDB pdb = PollHelper.getPollPopsDB();
         TextView txt = (TextView)findViewById(R.id.setlistView);
         String msg = "";

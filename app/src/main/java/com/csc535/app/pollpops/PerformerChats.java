@@ -18,6 +18,8 @@ public class PerformerChats extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_performer_chats);
+        View view2 = this.getWindow().getDecorView();
+        view2.setBackgroundColor(0xffffffff);
         this.updateChats();
 
         final PerformerChats view = this;

@@ -4,13 +4,12 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.model.*;
-import com.mongodb.client.model.Sorts.*;
+import com.mongodb.client.model.Sorts;
 import org.bson.Document;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.NoSuchElementException;
 import java.util.Set;
-
 
 
 public class PollPopsDB {
@@ -24,6 +23,42 @@ public class PollPopsDB {
         }
         MongoDatabase db = this.mongoClient.getDatabase(this.performance_id);
         return db;
+    }
+    public boolean userExists() {
+        MongoDatabase db = this.getDB(this.performance_id);
+        MongoCollection<Document> coll = db.getCollection("users");
+        MongoCursor<Document> cursor = coll.find().iterator();
+        try {
+            while (cursor.hasNext()) {
+                Document doc = cursor.next();
+                if( doc.getString("username").equals( this.username ) ) {
+                    return true;
+                }
+            }
+        } finally {
+            cursor.close();
+        }
+
+        return false;
+    }
+
+    public boolean checkPassword( String password ) {
+        MongoDatabase db = this.getDB(this.performance_id);
+        MongoCollection<Document> coll = db.getCollection("users");
+        MongoCursor<Document> cursor = coll.find().iterator();
+        try {
+            while (cursor.hasNext()) {
+                Document doc = cursor.next();
+                if( doc.getString("username").equals( this.username ) &&
+                        doc.getString( "password" ).equals( password ) ) {
+                    return true;
+                }
+            }
+        } finally {
+            cursor.close();
+        }
+
+        return false;
     }
 
     public boolean performanceExists() {
@@ -88,6 +123,13 @@ public class PollPopsDB {
         return "NONE";
     }
 
+    public void createUser( String password ) {
+        MongoDatabase db = this.getDB(this.performance_id);
+        MongoCollection<Document> coll = db.getCollection("users");
+        Document doc = new Document("username", this.username )
+                .append("password", password );
+        coll.insertOne(doc);
+    }
     public void recordFeedback( int value ) {
         MongoDatabase db = this.getDB(this.performance_id);
         MongoCollection<Document> coll = db.getCollection("feedback");
