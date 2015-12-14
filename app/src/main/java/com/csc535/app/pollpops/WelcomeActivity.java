@@ -16,7 +16,7 @@ public class WelcomeActivity extends AppCompatActivity {
         PollPopsDB pdb = PollHelper.getPollPopsDB();
         EditText mEdit = (EditText)findViewById(R.id.performanceId);
         EditText userEdit = (EditText)findViewById(R.id.username);
-        pdb.performance_id = mEdit.getText().toString();
+        pdb.performance_id = mEdit.getText().toString().toLowerCase();
         pdb.username = userEdit.getText().toString();
         if( pdb.userExists() ) {
             Intent intent = new Intent(getApplicationContext(), UserLoginActivity.class);
@@ -32,7 +32,7 @@ public class WelcomeActivity extends AppCompatActivity {
         PollPopsDB pdb = PollHelper.getPollPopsDB();
         EditText mEdit = (EditText)findViewById(R.id.performanceId);
         EditText userEdit = (EditText)findViewById(R.id.username);
-        pdb.performance_id = mEdit.getText().toString();
+        pdb.performance_id = mEdit.getText().toString().toLowerCase();
         pdb.username = userEdit.getText().toString();
         if( pdb.performanceExists()) {
             Intent intent = new Intent(getApplicationContext(), performer_login.class);
