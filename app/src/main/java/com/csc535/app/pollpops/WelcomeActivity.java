@@ -17,7 +17,7 @@ public class WelcomeActivity extends AppCompatActivity {
         EditText mEdit = (EditText)findViewById(R.id.performanceId);
         EditText userEdit = (EditText)findViewById(R.id.username);
         pdb.performance_id = mEdit.getText().toString().toLowerCase();
-        pdb.username = userEdit.getText().toString();
+        pdb.username = userEdit.getText().toString().toLowerCase();
         if( pdb.userExists() ) {
             Intent intent = new Intent(getApplicationContext(), UserLoginActivity.class);
             startActivity(intent);
@@ -33,7 +33,7 @@ public class WelcomeActivity extends AppCompatActivity {
         EditText mEdit = (EditText)findViewById(R.id.performanceId);
         EditText userEdit = (EditText)findViewById(R.id.username);
         pdb.performance_id = mEdit.getText().toString().toLowerCase();
-        pdb.username = userEdit.getText().toString();
+        pdb.username = userEdit.getText().toString().toLowerCase();
         if( pdb.performanceExists()) {
             Intent intent = new Intent(getApplicationContext(), performer_login.class);
             startActivity(intent);
